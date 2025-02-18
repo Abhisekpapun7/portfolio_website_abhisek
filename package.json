@@ -1,13 +1,14 @@
 {
   "name": "portfolio_project2",
   "version": "1.0.0",
-  "description": "",
+  "description": "Portfolio project for web development",
   "main": "script.js",
   "scripts": {
-    "start": "node -r dotenv/config server.js"
+    "start": "node -r dotenv/config server.js",
+    "build": "echo 'No build step needed'" 
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["portfolio", "web", "node", "express"],
+  "author": "Abhisek Mallick",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
@@ -15,5 +16,8 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemailer": "^6.10.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"  
   }
 }
