@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node -r dotenv/config server.js",
     "vercel-start": "node -r dotenv/config server.js",
-    "build": "npm install"
+    "build": "echo \"No build step needed\""
   },
   "keywords": ["portfolio", "web", "node", "express"],
   "author": "Abhisek Mallick",
