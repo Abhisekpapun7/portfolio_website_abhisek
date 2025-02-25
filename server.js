@@ -2,10 +2,16 @@ const nodemailer = require("nodemailer");
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
+const path = require("path");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
+
 app.use(express.json());
 app.use(cors()); // Allow frontend to access backend
+
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
@@ -15,11 +21,12 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Root Route to handle GET /
+// Root Route to serve index.html
 app.get("/", (req, res) => {
-  res.send("Backend is running! 🚀");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Route to handle email sending
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
   const mailOptions = {
@@ -38,4 +45,9 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+// Fallback route for unmatched routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
