@@ -2,10 +2,11 @@
   "name": "portfolio_project2",
   "version": "1.0.0",
   "description": "Portfolio project for web development",
-  "main": "script.js",
+  "main": "server.js",
   "scripts": {
     "start": "node -r dotenv/config server.js",
-    "build": "echo 'No build step needed'" 
+    "vercel-start": "node -r dotenv/config server.js",
+    "build": "npm install"
   },
   "keywords": ["portfolio", "web", "node", "express"],
   "author": "Abhisek Mallick",
@@ -18,6 +19,6 @@
     "nodemailer": "^6.10.0"
   },
   "engines": {
-    "node": ">=14.0.0"  
+    "node": ">=14.0.0"
   }
 }
