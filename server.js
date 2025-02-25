@@ -7,7 +7,7 @@ const path = require("path");
 const app = express();
 
 app.use(express.json());
-app.use(cors()); // Allow frontend to access backend
+app.use(cors()); // Enable CORS
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Root Route to serve index.html
+// Root route
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
@@ -30,7 +30,7 @@ app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "your-email@gmail.com", // Change to your email
+    to: "your-email@gmail.com", // Replace with your email
     subject: `New Contact Form Submission from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
@@ -44,7 +44,7 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Fallback route for unmatched routes
+// Catch-all route for unmatched paths
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
