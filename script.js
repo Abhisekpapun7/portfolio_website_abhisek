@@ -99,8 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// code for the contact section section
-
 document.addEventListener("DOMContentLoaded", function () {
     // Smooth scrolling for the Contact section
     const contactLink = document.getElementById("contact-link");
@@ -129,17 +127,20 @@ document.addEventListener("DOMContentLoaded", function () {
             const message = document.getElementById("message").value;
 
             try {
-                const response = await fetch("http://localhost:5000/send-email", {
+                const response = await fetch("/send-email", { // Changed to relative path
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
                 });
 
-                const result = await response.json();
-                document.getElementById("responseMessage").innerText = result.message;
-
-                // Reset the form after successful submission
-                contactForm.reset();
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById("responseMessage").innerText = result.message || "Message sent successfully!";
+                    contactForm.reset(); // Reset form after successful submission
+                } else {
+                    document.getElementById("responseMessage").innerText = "Failed to send message.";
+                    console.error("Server error:", response.statusText);
+                }
             } catch (error) {
                 document.getElementById("responseMessage").innerText = "Error sending message.";
                 console.error("Error:", error);
