@@ -1,24 +1,15 @@
 {
-  "name": "portfolio_project2",
+  "name": "portfolio_project",
   "version": "1.0.0",
-  "description": "Portfolio project for web development",
-  "main": "server.js",
+  "main": "api/server.js",
   "scripts": {
-    "start": "node -r dotenv/config server.js",
-    "vercel-start": "node -r dotenv/config server.js",
-    "build": "echo \"No build step needed\""
+    "start": "node api/server.js",
+    "vercel-start": "node api/server.js"
   },
-  "keywords": ["portfolio", "web", "node", "express"],
-  "author": "Abhisek Mallick",
-  "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "nodemailer": "^6.10.0"
-  },
-  "engines": {
-    "node": ">=16.0.0"
   }
 }

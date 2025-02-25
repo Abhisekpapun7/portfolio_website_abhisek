@@ -7,27 +7,28 @@ const path = require("path");
 const app = express();
 
 app.use(express.json());
-app.use(cors()); // Enable CORS
+app.use(cors());
 
-// Serve static files from the "public" directory
-app.use(express.static(path.join(__dirname, "public")));
+// Serve static files
+app.use(express.static(path.join(__dirname, "../public")));
 
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
     user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS, // Use App Password
+    pass: process.env.EMAIL_PASS,
   },
 });
 
 // Root route
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
-// Route to handle email sending
+// Email route
 app.post("/send-email", async (req, res) => {
   const { name, email, message } = req.body;
+
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: "your-email@gmail.com", // Replace with your email
@@ -44,10 +45,4 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Catch-all route for unmatched paths
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-// Export app for Vercel
 module.exports = app;
