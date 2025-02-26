@@ -13,7 +13,7 @@ app.use(cors());
 // Serve static files
 app.use(express.static(path.join(__dirname, "../public")));
 
-// Nodemailer transporter
+// Nodemailer setup
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -33,7 +33,7 @@ app.post("/api/send-email", async (req, res) => {
 
   const mailOptions = {
     from: process.env.EMAIL_USER || "mallickabhisek37@gmail.com",
-    to: "mallickabhisek37@gmail.com", // Receiving emails at your Gmail
+    to: "mallickabhisek37@gmail.com",
     subject: `New Contact Form Submission from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
@@ -52,5 +52,5 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
-// Export app for Vercel
+// **Export app for Vercel**
 module.exports = app;
