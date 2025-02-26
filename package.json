@@ -17,5 +17,17 @@
   },
   "engines": {
     "node": ">=14.0.0"
-  }
+  },
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abhisekpapun7/portfolio_website_abhisek.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Abhisekpapun7/portfolio_website_abhisek/issues"
+  },
+  "homepage": "https://github.com/Abhisekpapun7/portfolio_website_abhisek#readme"
 }
