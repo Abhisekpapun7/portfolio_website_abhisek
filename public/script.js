@@ -138,8 +138,10 @@ document.addEventListener("DOMContentLoaded", function () {
             responseMessage.innerText = "Sending...";
             responseMessage.style.color = "blue";
 
+            // const apiUrl = process.env.API_URL;
+
             try {
-                const response = await fetch("/api/send-email", {
+                const response = await fetch(`http://localhost:5000/api/send-email`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
