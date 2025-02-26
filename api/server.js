@@ -13,10 +13,11 @@ app.use(cors());
 // Serve static files
 app.use(express.static(path.join(__dirname, "../public")));
 
+// Nodemailer transporter
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER,
+    user: process.env.EMAIL_USER || "mallickabhisek37@gmail.com",
     pass: process.env.EMAIL_PASS,
   },
 });
@@ -27,12 +28,12 @@ app.get("/", (req, res) => {
 });
 
 // Email route
-app.post("/send-email", async (req, res) => {
+app.post("/api/send-email", async (req, res) => {
   const { name, email, message } = req.body;
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: "your-email@gmail.com", // Replace with your email
+    from: process.env.EMAIL_USER || "mallickabhisek37@gmail.com",
+    to: "mallickabhisek37@gmail.com", // Receiving emails at your Gmail
     subject: `New Contact Form Submission from ${name}`,
     text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
   };
@@ -46,9 +47,10 @@ app.post("/send-email", async (req, res) => {
   }
 });
 
-// Fallback route
+// Catch-all route for frontend
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Export app for Vercel
+module.exports = app;
