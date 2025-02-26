@@ -107,11 +107,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (contactLink && contactSection) {
         contactLink.addEventListener("click", function (event) {
             event.preventDefault(); // Prevent default anchor behavior
-
-            contactSection.scrollIntoView({
-                behavior: "smooth", // Enables smooth scrolling
-                block: "start"
-            });
+            contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
         });
     }
 
@@ -122,12 +118,22 @@ document.addEventListener("DOMContentLoaded", function () {
         contactForm.addEventListener("submit", async function (event) {
             event.preventDefault();
 
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
+            const responseMessage = document.getElementById("responseMessage");
+
+            // Clear previous response message
+            responseMessage.innerText = "";
+
+            // Basic validation
+            if (!name || !email || !message) {
+                responseMessage.innerText = "Please fill in all fields.";
+                return;
+            }
 
             try {
-                const response = await fetch("/send-email", { // Changed to relative path
+                const response = await fetch("/api/send-email", { // Corrected API route
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
@@ -135,14 +141,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (response.ok) {
                     const result = await response.json();
-                    document.getElementById("responseMessage").innerText = result.message || "Message sent successfully!";
+                    responseMessage.innerText = result.message || "Message sent successfully!";
                     contactForm.reset(); // Reset form after successful submission
                 } else {
-                    document.getElementById("responseMessage").innerText = "Failed to send message.";
+                    responseMessage.innerText = "Failed to send message. Please try again.";
                     console.error("Server error:", response.statusText);
                 }
             } catch (error) {
-                document.getElementById("responseMessage").innerText = "Error sending message.";
+                responseMessage.innerText = "Error sending message. Please check your connection.";
                 console.error("Error:", error);
             }
         });
