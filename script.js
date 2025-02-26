@@ -125,15 +125,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Clear previous response message
             responseMessage.innerText = "";
+            responseMessage.style.color = "#000"; // Default color
 
             // Basic validation
             if (!name || !email || !message) {
                 responseMessage.innerText = "Please fill in all fields.";
+                responseMessage.style.color = "red";
                 return;
             }
 
+            // Show loading message
+            responseMessage.innerText = "Sending...";
+            responseMessage.style.color = "blue";
+
             try {
-                const response = await fetch("/api/send-email", { // Corrected API route
+                const response = await fetch("/api/send-email", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
@@ -142,13 +148,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok) {
                     const result = await response.json();
                     responseMessage.innerText = result.message || "Message sent successfully!";
+                    responseMessage.style.color = "green";
                     contactForm.reset(); // Reset form after successful submission
                 } else {
                     responseMessage.innerText = "Failed to send message. Please try again.";
+                    responseMessage.style.color = "red";
                     console.error("Server error:", response.statusText);
                 }
             } catch (error) {
                 responseMessage.innerText = "Error sending message. Please check your connection.";
+                responseMessage.style.color = "red";
                 console.error("Error:", error);
             }
         });

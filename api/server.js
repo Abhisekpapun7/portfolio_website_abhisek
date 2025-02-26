@@ -10,8 +10,8 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cors());
 
-// Serve static files from 'public'
-app.use(express.static(path.join(__dirname, "public")));
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, "../public")));
 
 // Nodemailer setup
 const transporter = nodemailer.createTransport({
@@ -22,9 +22,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Root route
+// Root route - Serve the frontend
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
 });
 
 // Email route
@@ -47,5 +47,10 @@ app.post("/api/send-email", async (req, res) => {
   }
 });
 
-// Export app for Vercel
+// Handle all other routes (for SPA routing)
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../public", "index.html"));
+});
+
+// **Export app for Vercel**
 module.exports = app;
