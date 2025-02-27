@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const apiUrl = process.env.API_URL;
 
             try {
-                const response = await fetch(`${apiUrl}/api/send-email`, {
+                const response = await fetch(`https://portfolio-website-backend-j9jx.onrender.com/api/send-email`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
