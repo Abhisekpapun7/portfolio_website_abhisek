@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // const apiUrl = process.env.API_URL;
 
             try {
-                const response = await fetch(`http://localhost:5000/api/send-email`, {
+                const response = await fetch(`https://github.com/Abhisekpapun7/portfolio-website-backend/commit/e018b352786acf60f00b206dec1cdfb81afa6a1b/api/send-email`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
