@@ -100,18 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Smooth scrolling for the Contact section
-    const contactLink = document.getElementById("contact-link");
-    const contactSection = document.getElementById("contact");
-
-    if (contactLink && contactSection) {
-        contactLink.addEventListener("click", function (event) {
-            event.preventDefault(); // Prevent default anchor behavior
-            contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-    }
-
-    // Contact form submission logic
     const contactForm = document.getElementById("contactForm");
 
     if (contactForm) {
@@ -123,44 +111,36 @@ document.addEventListener("DOMContentLoaded", function () {
             const message = document.getElementById("message").value.trim();
             const responseMessage = document.getElementById("responseMessage");
 
-            // Clear previous response message
             responseMessage.innerText = "";
-            responseMessage.style.color = "#000"; // Default color
+            responseMessage.style.color = "#000"; 
 
-            // Basic validation
             if (!name || !email || !message) {
                 responseMessage.innerText = "Please fill in all fields.";
                 responseMessage.style.color = "red";
                 return;
             }
 
-            // Show loading message
             responseMessage.innerText = "Sending...";
             responseMessage.style.color = "blue";
 
-            const apiUrl = process.env.API_URL;
-
             try {
-                const response = await fetch(`https://portfolio-website-backend-j9jx.onrender.com/api/send-email`, {
+                const response = await fetch("/api/contact", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
                 });
 
                 if (response.ok) {
-                    const result = await response.json();
-                    responseMessage.innerText = result.message || "Message sent successfully!";
+                    responseMessage.innerText = "Message sent successfully!";
                     responseMessage.style.color = "green";
-                    contactForm.reset(); // Reset form after successful submission
+                    contactForm.reset();
                 } else {
                     responseMessage.innerText = "Failed to send message. Please try again.";
                     responseMessage.style.color = "red";
-                    console.error("Server error:", response.statusText);
                 }
             } catch (error) {
                 responseMessage.innerText = "Error sending message. Please check your connection.";
                 responseMessage.style.color = "red";
-                console.error("Error:", error);
             }
         });
     }
