@@ -120,31 +120,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // logic for sending message
 
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+document.getElementById('contactForm').addEventListener('submit', async function(event) {
     event.preventDefault();
 
     const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => {
-        data[key] = value;
-    });
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
 
-    fetch("https://your-vercel-app.vercel.app/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
-      })
-    .then(response => {
+    if (!name || !email || !message) {
+        document.getElementById('responseMessage').textContent = "❌ All fields are required.";
+        return;
+    }
+
+    try {
+        const response = await fetch("https://your-vercel-app.vercel.app/api/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name, email, message }),
+        });
+
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
-        return response.json();
-    })
-    .then(data => {
-        document.getElementById('responseMessage').textContent = data.message;
-    })
-    .catch(error => {
-        document.getElementById('responseMessage').textContent = 'Error sending message: ' + error.message;
-        console.error('Error:', error);
-    });
+
+        const result = await response.json();
+        document.getElementById('responseMessage').textContent = "✅ " + result.message;
+        this.reset();  // Clear form after successful submission
+
+    } catch (error) {
+        document.getElementById('responseMessage').textContent = "❌ Error sending message: " + error.message;
+        console.error("Error:", error);
+    }
 });
