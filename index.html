@@ -1,0 +1,202 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Hero Section</title>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <!-- hello this is for test purpose -->
+    <!-- nav bar -->
+
+    <nav class="navbar">
+        <div class="logo">#ABHISEK</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills" id="skills-link">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contacts" id="contact-link">Contact Me</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </nav>
+
+    <!-- hero section -->
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="fade-in">Hi, I'm <span class="animated-name"></span></h1>
+            <h2 class="fade-in">Frontend Developer & UI/UX Designer</h2>
+            <p class="fade-in">I craft modern, responsive, and user-centric designs while building seamless web solutions with frontend technologies and Java backend.</p>
+            <a href="images/my_resume.pdf" class="cta-button fade-in" download="Abhisek_Mallick_Resume.pdf">My Resume</a>
+        </div>
+        <img src="images/Hero_img.png" alt="Hero Image" class="hero-image fade-in">
+    </section>
+
+    <!-- About section -->
+
+    <section class="about" id="about">
+    <div class="about-content fade-in">
+        <h2>About Me</h2>
+        <p>
+            Hi, I'm <span class="highlight">Abhisek Mallick</span>, a passionate <strong>UI/UX Designer</strong> and <strong>Frontend Developer</strong>  
+            focused on crafting modern, responsive, and user-friendly digital experiences. I specialize in intuitive  
+            interface design and interactive web development to enhance user engagement.
+        </p>
+        <p>
+            I hold a <strong>Bachelor's degree in Computer Science</strong> and Engineering from KMBB College of Engineering and Technology.  
+            During my academic journey, I gained expertise in UI/UX design, frontend development, and backend technologies.
+        </p>
+        <p>
+            My experience includes a <strong>UI/UX Design Internship at Bluestock Fintech Pvt Ltd</strong>, where I created wireframes,  
+            prototypes, and interactive interfaces that improved user satisfaction. Currently, I am a <strong>Frontend Development  
+            Intern at Kodnest</strong>, working on scalable web applications.
+        </p>
+        <p>
+            I have experience with <strong>Figma, HTML, CSS, JavaScript, React, Java, Spring Boot.</strong>
+            I focus on building visually appealing designs, optimizing performance, and ensuring seamless user interactions  
+            across devices.
+        </p>
+    </div>
+</section>
+
+
+    <!-- skills section -->
+
+    <section class="skills-section" id="skills">
+        <h2 class="fade-in">Skills</h2>
+        <div class="skills-container">
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/html.png" alt="HTML"></div>
+                <h3>HTML</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/css.png" alt="CSS"></div>
+                <h3>CSS</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/js.png" alt="JavaScript"></div>
+                <h3>JavaScript</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/java.png" alt="Java Backend"></div>
+                <h3>Java Backend</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/tailwind.png" alt="Tailwind CSS"></div>
+                <h3>Tailwind CSS</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/react.png" alt="React"></div>
+                <h3>React</h3>
+            </div>
+            <div class="skill-card fade-in">
+                <div class="icon"><img src="images/uiux.png" alt="UI/UX Design"></div>
+                <h3>UI/UX Design</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- code for the project section -->
+
+    <section class="projects-section" id="projects">
+        <h2>My Projects</h2>
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/rock_paper_game.png" alt="Project 1">
+                </div>
+                <h3>Rock Paper Scissors Game</h3>
+                <p>HTML, CSS, JavaScript</p>
+                <div class="project-links">
+                    <a href="https://github.com/Abhisekpapun7/rock-paper-scissors.git" class="btn">Code</a>
+                    <a href="https://abhisekpapun7.github.io/rock-paper-scissors/" class="btn">Demo</a>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/tic_tac_toe.png" alt="Project 2">
+                </div>
+                <h3>Tic-Tac-Toe Game</h3>
+                <p>HTML, CSS, JavaScript</p>
+                <div class="project-links">
+                    <a href="https://github.com/Abhisekpapun7/tic-tac-toe-game.git" class="btn">Code</a>
+                    <a href="https://abhisekpapun7.github.io/tic-tac-toe-game/" class="btn">Demo</a>
+                </div>
+            </div>
+    
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/portfolio.png" alt="Project 3">
+                </div>
+                <h3>Portfolio Website</h3>
+                <p>HTML, CSS, JavaScript</p>
+                <div class="project-links">
+                    <a href="https://github.com/Abhisekpapun7/portfolio_website_abhisek.git" class="btn">Code</a>
+                    <a href="https://abhisekpapun7.github.io/portfolio_website_abhisek/" class="btn">Demo</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    
+
+    <!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <h2>Contact Me</h2>
+
+    <!-- Contact Information -->
+    <p>Email: <a href="mailto:mallickabhisek37@gmail.com">mallickabhisek37@gmail.com</a></p>
+    <p>Phone: <a href="tel:+917848985788">+91 7848985788</a></p>
+
+    <!-- Contact Form -->
+    <form class="contact-form" id="contactForm">
+        <input type="text" id="name" name="name" placeholder="Your Name" required />
+        <input type="email" id="email" name="email" placeholder="Your Email" required />
+        <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+        <button type="submit" id="submitBtn">Send Message</button>
+    </form>
+
+    <p id="responseMessage" class="response-message"></p>
+</section>
+
+
+     <!-- footer code -->
+
+     <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2025 Abhisek Mallick | All Rights Reserved</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/abhisek-mallick-040791241" target="_blank" class="social-icon">
+                    <img src="images/linkedin.svg" alt="LinkedIn">
+                </a>
+                <a href="https://www.facebook.com/rock.abhisek.75" target="_blank" class="social-icon">
+                    <img src="images/facebook.svg" alt="Facebook">
+                </a>
+                <a href="https://www.behance.net/abhisekpapun" target="_blank" class="social-icon">
+                    <img src="images/behance.svg" alt="Behance">
+                </a>
+                <a href="https://wa.me/917848985788" target="_blank" class="social-icon">
+                    <img src="images/whatsapp.svg" alt="WhatsApp">
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    
+    
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+
+</body>
+</html>
