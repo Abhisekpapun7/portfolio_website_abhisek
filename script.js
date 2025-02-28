@@ -129,13 +129,11 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         data[key] = value;
     });
 
-    fetch('http://localhost:3000/contact', {  // Change URL if hosted online
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data)
-    })
+    fetch("https://your-vercel-app.vercel.app/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      })
     .then(response => {
         if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
