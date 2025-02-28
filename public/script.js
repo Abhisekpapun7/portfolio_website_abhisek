@@ -1,152 +1,35 @@
-document.addEventListener("DOMContentLoaded", function() {
-    gsap.from(".fade-in", {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        stagger: 0.3
-    });
-});
+const express = require("express");
+const cors = require("cors");
+const dotenv = require("dotenv");
 
-const mobileMenu = document.getElementById('mobile-menu');
-const navLinks = document.querySelector('.nav-links');
-mobileMenu.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    mobileMenu.classList.toggle('active');
-});
+dotenv.config(); // Load environment variables
 
-document.addEventListener("DOMContentLoaded", function() {
-    const text = "Abhisek Mallick";
-    const target = document.querySelector(".animated-name");
+const app = express();
+const PORT = process.env.PORT || 5000;
 
-    function typeAnimation() {
-        target.innerHTML = ""; // Clear previous text
-        let index = 0;
-        
-        function typeLetter() {
-            if (index < text.length) {
-                target.innerHTML += text[index];
-                index++;
-                setTimeout(typeLetter, 100); // Typing speed
-            } else {
-                setTimeout(() => {
-                    eraseAnimation();
-                }, 2000); // Pause before erasing
-            }
-        }
+app.use(express.json());
+app.use(cors());
 
-        function eraseAnimation() {
-            if (target.innerHTML.length > 0) {
-                target.innerHTML = target.innerHTML.slice(0, -1);
-                setTimeout(eraseAnimation, 50); // Erasing speed
-            } else {
-                setTimeout(typeAnimation, 1000); // Pause before restarting
-            }
-        }
+app.post("/api/contact", async (req, res) => {
+    const { name, email, message } = req.body;
 
-        typeLetter();
+    if (!name || !email || !message) {
+        return res.status(400).json({ error: "Please fill in all fields." });
     }
 
-    typeAnimation();
+    // Simulate a success response (Replace with actual email sending logic)
+    console.log(`New Message from ${name} (${email}): ${message}`);
+    return res.status(200).json({ success: "Message sent successfully!" });
 });
 
-
-// about section code
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener("click", function(event) {
-        event.preventDefault();
-        const target = document.querySelector(this.getAttribute("href"));
-        target.scrollIntoView({
-            behavior: "smooth"
-        });
-    });
+// Vercel Specific: Handle all other routes
+app.all("*", (req, res) => {
+    res.status(404).json({ error: "Route not found" });
 });
 
+// Start server only when running locally
+if (process.env.NODE_ENV !== "production") {
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
 
-
-//skill section animation code
-
-document.addEventListener("DOMContentLoaded", function () {
-    gsap.registerPlugin(ScrollTrigger);
-
-    // Fade-in animation for elements
-    gsap.utils.toArray(".fade-in").forEach((element) => {
-        gsap.from(element, {
-            opacity: 0,
-            y: 50,
-            duration: 1,
-            stagger: 0.2,
-            scrollTrigger: {
-                trigger: element,
-                start: "top 85%",
-                toggleActions: "play none none reverse",
-            },
-        });
-    });
-
-    // Smooth scrolling for the Skills section
-    const skillsLink = document.getElementById("skills-link");
-    const skillsSection = document.getElementById("skills");
-
-    if (skillsLink && skillsSection) {
-        skillsLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            skillsSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        });
-    }
-});
-
-
-document.addEventListener("DOMContentLoaded", function () {
-    const contactForm = document.getElementById("contactForm");
-
-    if (contactForm) {
-        contactForm.addEventListener("submit", async function (event) {
-            event.preventDefault();
-
-            const name = document.getElementById("name").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const message = document.getElementById("message").value.trim();
-            const responseMessage = document.getElementById("responseMessage");
-
-            responseMessage.innerText = "";
-            responseMessage.style.color = "#000";
-
-            if (!name || !email || !message) {
-                responseMessage.innerText = "Please fill in all fields.";
-                responseMessage.style.color = "red";
-                return;
-            }
-
-            responseMessage.innerText = "Sending...";
-            responseMessage.style.color = "blue";
-
-            try {
-                const apiUrl =
-                    window.location.hostname === "localhost"
-                        ? "http://localhost:5000/api/contact"
-                        : "https://your-vercel-app.vercel.app/api/contact"; // Change to your actual Vercel URL
-
-                const response = await fetch(apiUrl, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ name, email, message }),
-                });
-
-                if (response.ok) {
-                    responseMessage.innerText = "Message sent successfully!";
-                    responseMessage.style.color = "green";
-                    contactForm.reset();
-                } else {
-                    responseMessage.innerText = "Failed to send message. Please try again.";
-                    responseMessage.style.color = "red";
-                }
-            } catch (error) {
-                responseMessage.innerText = "Error sending message. Please check your connection.";
-                responseMessage.style.color = "red";
-            }
-        });
-    }
-});
+module.exports = app; // Export for Vercel
