@@ -124,17 +124,22 @@ document.getElementById('contactForm').addEventListener('submit', async function
     event.preventDefault();
 
     const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
+    const name = formData.get('name').trim();
+    const email = formData.get('email').trim();
+    const message = formData.get('message').trim();
+    const responseMessage = document.getElementById('responseMessage');
 
     if (!name || !email || !message) {
-        document.getElementById('responseMessage').textContent = "❌ All fields are required.";
+        responseMessage.textContent = "❌ All fields are required.";
+        responseMessage.style.color = "red";
         return;
     }
 
+    responseMessage.textContent = "⏳ Sending...";
+    responseMessage.style.color = "blue";
+
     try {
-        const response = await fetch("https://your-vercel-app.vercel.app/api/contact", {
+        const response = await fetch("https://your-backend-project.vercel.app/api/contact", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name, email, message }),
@@ -145,11 +150,13 @@ document.getElementById('contactForm').addEventListener('submit', async function
         }
 
         const result = await response.json();
-        document.getElementById('responseMessage').textContent = "✅ " + result.message;
+        responseMessage.textContent = "✅ " + result.message;
+        responseMessage.style.color = "green";
         this.reset();  // Clear form after successful submission
 
     } catch (error) {
-        document.getElementById('responseMessage').textContent = "❌ Error sending message: " + error.message;
+        responseMessage.textContent = "❌ Error sending message: " + error.message;
+        responseMessage.style.color = "red";
         console.error("Error:", error);
     }
 });

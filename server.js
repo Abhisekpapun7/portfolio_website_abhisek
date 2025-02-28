@@ -8,18 +8,26 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// ✅ Fix: Proper CORS handling
+app.use(cors({
+    origin: "https://portfolio-website-abhisek-master.vercel.app", // Your frontend domain
+    methods: "GET, POST, OPTIONS",
+    allowedHeaders: "Content-Type, Authorization"
+}));
+
+// ✅ Handle CORS preflight requests properly
+app.options('/api/contact', (req, res) => {
+    res.setHeader('Access-Control-Allow-Origin', 'https://portfolio-website-abhisek-master.vercel.app');
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    return res.status(204).send();
+});
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// ✅ Fix: Allow CORS for your frontend
-app.use(cors({
-    origin: "https://portfolio-website-abhisek-master.vercel.app",  // Your frontend domain
-    methods: "POST",
-    allowedHeaders: "Content-Type"
-}));
-
 app.post('/api/contact', (req, res) => {
-    console.log('Received request:', req.body); 
+    console.log('Received request:', req.body);
 
     const { name, email, message } = req.body;
 
@@ -54,7 +62,8 @@ app.post('/api/contact', (req, res) => {
     });
 });
 
-app.use((req, res, next) => {
+// Handle 404 errors
+app.use((req, res) => {
     res.status(404).json({ error: 'Not Found' });
 });
 
