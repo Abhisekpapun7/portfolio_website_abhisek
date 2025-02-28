@@ -116,34 +116,4 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
-
-    // Contact form submission logic
-    // const contactForm = document.getElementById("contactForm");
-
-    // if (contactForm) {
-    //     contactForm.addEventListener("submit", async function (event) {
-    //         event.preventDefault();
-
-    //         const name = document.getElementById("name").value;
-    //         const email = document.getElementById("email").value;
-    //         const message = document.getElementById("message").value;
-
-    //         try {
-    //             const response = await fetch("http://localhost:5000/send-email", {
-    //                 method: "POST",
-    //                 headers: { "Content-Type": "application/json" },
-    //                 body: JSON.stringify({ name, email, message }),
-    //             });
-
-    //             const result = await response.json();
-    //             document.getElementById("responseMessage").innerText = result.message;
-
-    //             // Reset the form after successful submission
-    //             contactForm.reset();
-    //         } catch (error) {
-    //             document.getElementById("responseMessage").innerText = "Error sending message.";
-    //             console.error("Error:", error);
-    //         }
-    //     });
-    // }
 });
