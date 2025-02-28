@@ -117,3 +117,36 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// logic for sending message
+
+document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => {
+        data[key] = value;
+    });
+
+    fetch('http://localhost:3000/contact', {  // Change URL if hosted online
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        document.getElementById('responseMessage').textContent = data.message;
+    })
+    .catch(error => {
+        document.getElementById('responseMessage').textContent = 'Error sending message: ' + error.message;
+        console.error('Error:', error);
+    });
+});
