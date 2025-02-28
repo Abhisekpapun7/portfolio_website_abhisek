@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const responseMessage = document.getElementById("responseMessage");
 
             responseMessage.innerText = "";
-            responseMessage.style.color = "#000"; 
+            responseMessage.style.color = "#000";
 
             if (!name || !email || !message) {
                 responseMessage.innerText = "Please fill in all fields.";
@@ -124,7 +124,12 @@ document.addEventListener("DOMContentLoaded", function () {
             responseMessage.style.color = "blue";
 
             try {
-                const response = await fetch("/api/contact", {
+                const apiUrl =
+                    window.location.hostname === "localhost"
+                        ? "http://localhost:5000/api/contact"
+                        : "https://your-vercel-app.vercel.app/api/contact"; // Change to your actual Vercel URL
+
+                const response = await fetch(apiUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ name, email, message }),
