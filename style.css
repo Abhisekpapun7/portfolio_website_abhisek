@@ -563,7 +563,7 @@ p {
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
   .coming-soon-container h2 {
     font-size: 32px;
     margin-bottom: 20px;
@@ -591,9 +591,9 @@ p {
   }
   
   .coming-soon-container .work-image {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
+    width: 250px;
+    height: 250px;
+    margin-bottom: 0px;
     object-fit: cover;
   }
   

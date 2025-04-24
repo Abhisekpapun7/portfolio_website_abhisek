@@ -176,6 +176,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }, 500);
   
     // Optionally, add an image for "work in progress"
-    workImage.setAttribute("src", "images/work-in-progress.png");  // Change the source to your image path
+    workImage.setAttribute("src", "images/coming_soon.png");  // Change the source to your image path
   });
   
