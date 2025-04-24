@@ -160,3 +160,22 @@ document.getElementById('contactForm').addEventListener('submit', async function
         console.error("Error:", error);
     }
 });
+
+
+// code for comming soon section
+// Optional JavaScript to show a scroll effect or interactivity for the Coming Soon section
+document.addEventListener("DOMContentLoaded", function() {
+    const comingSoonSection = document.getElementById("coming-soon");
+    const workImage = document.querySelector(".work-image");
+  
+    // Example: Add a fade-in effect to the section when the page loads
+    comingSoonSection.style.opacity = 0;
+    setTimeout(() => {
+      comingSoonSection.style.transition = "opacity 1s ease-in-out";
+      comingSoonSection.style.opacity = 1;
+    }, 500);
+  
+    // Optionally, add an image for "work in progress"
+    workImage.setAttribute("src", "images/work-in-progress.png");  // Change the source to your image path
+  });
+  

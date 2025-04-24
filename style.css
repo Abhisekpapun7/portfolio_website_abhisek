@@ -547,3 +547,87 @@ p {
 .footer-container p {
     color: white;
 }
+
+
+/* Coming Soon Section */
+#coming-soon {
+    background-color: white;
+    padding: 40px 20px;
+    text-align: center;
+  }
+  
+  .coming-soon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .coming-soon-container h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  .coming-soon-container p {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  .coming-soon-container .resume-link {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .coming-soon-container .resume-link:hover {
+    background-color: #007bffb9;
+  }
+  
+  .coming-soon-container .work-image {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .coming-soon-container {
+      padding: 20px;
+    }
+  
+    .coming-soon-container h2 {
+      font-size: 28px;
+    }
+  
+    .coming-soon-container p {
+      font-size: 16px;
+    }
+  
+    .coming-soon-container .resume-link {
+      font-size: 16px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .coming-soon-container h2 {
+      font-size: 24px;
+    }
+  
+    .coming-soon-container p {
+      font-size: 14px;
+    }
+  
+    .coming-soon-container .resume-link {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
